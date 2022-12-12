@@ -4,6 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF8">
     </head>
   <body>
-  	Hello GBPay
+  	Hello GBPay - Redirect to ComeIn
   </body>
   </html>
