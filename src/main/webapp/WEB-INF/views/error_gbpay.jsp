@@ -6,9 +6,9 @@
   <body>
     <script>
       window.onload=function(){
-        back.postMessage('/payment/gbpay/thank');
+        back.postMessage('/payment/gbpay/error');
       }
     </script>
-    <center>Successfully Processing GBPay - Redirect to ComeIn</center>
+    <center>Error GBPay - Redirect to ComeIn</center>
   </body>
   </html>

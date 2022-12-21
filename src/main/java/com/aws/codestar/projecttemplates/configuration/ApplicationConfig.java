@@ -13,7 +13,7 @@ import com.aws.codestar.projecttemplates.controller.HelloWorldController;
  * Spring configuration for sample application.
  */
 @Configuration
-@ComponentScan({ "com.aws.codestar.projecttemplates.configuration","com.aws.codestar.comein" })
+@ComponentScan({ "com.aws.codestar.projecttemplates.configuration", "com.aws.codestar.comein" })
 @PropertySource("classpath:application.properties")
 public class ApplicationConfig {
 

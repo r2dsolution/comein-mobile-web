@@ -4,11 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF8">
     </head>
   <body>
-    <script>
-      window.onload=function(){
-        back.postMessage('/payment/gbpay/thank');
-      }
-    </script>
-    <center>Successfully Processing GBPay - Redirect to ComeIn</center>
+    <center>Background Processing GBPay</center>
   </body>
   </html>
