@@ -5,5 +5,6 @@
     </head>
   <body>
     <center>Background Processing GBPay</center>
+    resultCode=${resultCode}<br/>
   </body>
   </html>

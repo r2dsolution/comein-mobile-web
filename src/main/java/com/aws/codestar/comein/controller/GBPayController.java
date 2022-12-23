@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,8 @@ import com.aws.codestar.comein.utils.DateUtils;
 @Controller
 @RequestMapping("/gbpay")
 public class GBPayController {
+	
+	Logger logger = LoggerFactory.getLogger(GBPayController.class);
 	
 	public static String CreditCardFullPayment = "C";
 
@@ -43,7 +47,7 @@ public class GBPayController {
 	        Set<String> keys = params.keySet();
 	        for (String key : keys) {
 	            String param = params.get(key);
-	            System.out.println("key=" + key + " value=" + param);
+	            logger.info("key=" + key + " value=" + param);
 	        }
 	        String resultCode = params.get("resultCode");
 	        String amountStr = params.get("amount");
@@ -61,14 +65,16 @@ public class GBPayController {
 //	        
 //	        payment.setTotalAmt(new BigDecimal(amountStr));
 //	       
-//	        if (resultCode != null && resultCode.trim().equals("00")) {
-//	            page = "success";
-//	        }
+	        if (resultCode != null && resultCode.trim().equals("00")) {
+	            page = "success";
+	            int i = bookingRepo.updateGatewayRef(refNo, gbpRefNo, DateUtils.nowDate(),gateway);
+	        }
 //	        payment.setStatus(page);
-	        int i = bookingRepo.updateGatewayRef(refNo, gbpRefNo, DateUtils.nowDate(),gateway);
+	        
 	        //paymentRepo.save(payment);
     	} catch(Exception ex) {
-    		ex.printStackTrace();
+    		//ex.printStackTrace();
+    		logger.error(ex.getMessage(),ex);
     		page = "error";
     	}
         ModelAndView mav = new ModelAndView(page + "_gbpay");
@@ -77,7 +83,7 @@ public class GBPayController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView initGetGBPay() {
-        System.out.println("init get method");
+        logger.info("init get method");
         ModelAndView mav = new ModelAndView("gbpay");
         // mav.addObject("siteName", this.siteName);
         return mav;
@@ -88,7 +94,7 @@ public class GBPayController {
         Set<String> keys = params.keySet();
         for (String key : keys) {
             String param = params.get(key);
-            System.out.println("key=" + key + " value=" + param);
+            logger.info("key=" + key + " value=" + param);
         }
         String resultCode = params.get("resultCode");
         String amountStr = params.get("amount");
@@ -102,14 +108,14 @@ public class GBPayController {
         String cardNo = params.get("cardNo");
         String cardHolderName = params.get("cardHolderName");
        // String uuid = UUID.randomUUID().toString();
-        System.out.println("gbpRefNo="+gbpRefNo);
-        System.out.println("refNo="+refNo);
-        System.out.println("paymentType="+paymentType);
-        System.out.println("date="+date);
-        System.out.println("time="+time);
-        System.out.println("cardNo="+cardNo);
-        System.out.println("cardHolderName="+cardHolderName);
-        System.out.println("paymentType="+paymentType);
+        logger.info("gbpRefNo="+gbpRefNo);
+        logger.info("refNo="+refNo);
+        logger.info("paymentType="+paymentType);
+        logger.info("date="+date);
+        logger.info("time="+time);
+        logger.info("cardNo="+cardNo);
+        logger.info("cardHolderName="+cardHolderName);
+        logger.info("paymentType="+paymentType);
         
         
         String page = "error";
@@ -148,7 +154,8 @@ public class GBPayController {
         }
         
 
-        ModelAndView mav = new ModelAndView("bg_gbpay");
+        ModelAndView mav = new ModelAndView("bg_gbpay",params);
+        //mav.addObject("m", payment);
         return mav;
     }
     
