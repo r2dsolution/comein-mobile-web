@@ -8,7 +8,7 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table(name = "PAYMENT_INFO")
+@Table(name = "payment_info")
 public class PaymentM implements Serializable {
     private static final long serialVersionUID = 1L;
     
