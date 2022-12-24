@@ -57,22 +57,22 @@ public class GBPayController {
 	        String currencyCode = params.get("currencyCode");
 	        
 	        
-//	        PaymentM payment = new PaymentM();
-//	        payment.setCreateDate(DateUtils.nowDate());
-//	        payment.setGateway(gateway);
-//	        payment.setGatewayRef(gbpRefNo);
-//	        payment.setBookingCode(refNo);
-//	        payment.setPaymentNO(UUID.randomUUID().toString());
-//	        
-//	        payment.setTotalAmt(new BigDecimal(amountStr));
+	        PaymentM payment = new PaymentM();
+	        payment.setCreateDate(DateUtils.nowDate());
+	        payment.setGateway(gateway);
+	        payment.setGatewayRef(gbpRefNo);
+	        payment.setBookingCode(refNo);
+	        payment.setPaymentNO(UUID.randomUUID().toString());
+	        
+	        payment.setTotalAmt(new BigDecimal(amountStr));
 //	       
 	        if (resultCode != null && resultCode.trim().equals("00")) {
 	            page = "success";
 	            int i = bookingRepo.updateGatewayRef(refNo, gbpRefNo, DateUtils.nowDate(),gateway);
 	        }
-//	        payment.setStatus(page);
+	        payment.setStatus(page);
 	        
-	        //paymentRepo.save(payment);
+	        paymentRepo.save(payment);
     	} catch(Exception ex) {
     		//ex.printStackTrace();
     		logger.error(ex.getMessage(),ex);
@@ -123,22 +123,22 @@ public class GBPayController {
         String page = "error";
         String gateway = "gbpay";
         
-        PaymentM payment = new PaymentM();
-        payment.setCreateDate(DateUtils.nowDate());
-        payment.setGateway(gateway);
-        payment.setGatewayRef(gbpRefNo);
-        payment.setBookingCode(refNo);
-        payment.setPaymentNO(UUID.randomUUID().toString());
-        
-        payment.setTotalAmt(new BigDecimal(amountStr));
+//        PaymentM payment = new PaymentM();
+//        payment.setCreateDate(DateUtils.nowDate());
+//        payment.setGateway(gateway);
+//        payment.setGatewayRef(gbpRefNo);
+//        payment.setBookingCode(refNo);
+//        payment.setPaymentNO(UUID.randomUUID().toString());
+//        
+//        payment.setTotalAmt(new BigDecimal(amountStr));
        
         if (resultCode != null && resultCode.trim().equals("00")) {
             page = "success";
         }
-        payment.setStatus(page);
-        payment = paymentRepo.save(payment);
-        
-        Long paymentId = payment.getId();
+//        payment.setStatus(page);
+//        payment = paymentRepo.save(payment);
+//        
+//        Long paymentId = payment.getId();
         if (paymentType!=null && paymentType.trim().equals(CreditCardFullPayment)) {
         	CreditCardM cc = new CreditCardM();
         	cc.setCardNO(cardNo);
@@ -146,7 +146,7 @@ public class GBPayController {
         	cc.setTransactionDate(date);
         	cc.setTransactionTime(time);
         	cc.setCurrency(currencyCode);
-        	cc.setPaymentId(paymentId);
+//        	cc.setPaymentId(paymentId);
         	cc.setStatus(page);
         	cc.setStatusCode(resultCode);
         	cc.setStatusDesc(statusDescMap(resultCode));
