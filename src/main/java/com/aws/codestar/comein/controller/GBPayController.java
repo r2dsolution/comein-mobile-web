@@ -71,6 +71,9 @@ public class GBPayController {
 	            int i = bookingRepo.updateGatewayRef(refNo, gbpRefNo, DateUtils.nowDate(),gateway);
 	        }
 	        payment.setStatus(page);
+	        payment.setStatusCode(resultCode);
+	        payment.setStatusDesc(statusDescMap(resultCode));
+	        payment.setRecommendation(statusRecommend(resultCode));
 	        
 	        paymentRepo.save(payment);
     	} catch(Exception ex) {

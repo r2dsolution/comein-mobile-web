@@ -37,6 +37,10 @@ public class PaymentM implements Serializable {
     private Date updateDate;
 
     private String status;
+    
+    private String statusCode;
+    private String statusDesc;
+    private String recommendation;
 
     /**
      * @return String return the paymentNO
@@ -150,6 +154,30 @@ public class PaymentM implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
+
+	public String getStatusDesc() {
+		return statusDesc;
+	}
+
+	public void setStatusDesc(String statusDesc) {
+		this.statusDesc = statusDesc;
+	}
+
+	public String getRecommendation() {
+		return recommendation;
+	}
+
+	public void setRecommendation(String recommendation) {
+		this.recommendation = recommendation;
 	}
 
 
