@@ -1,6 +1,7 @@
 package com.aws.codestar.comein.controller;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -91,6 +92,7 @@ public class GBPayController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/info")
     public ModelAndView initBackgroundGBPay(@RequestParam Map<String, String> params) {
+    	System.out.println("initial initBackgroundGBPay "+ new Date());
         Set<String> keys = params.keySet();
         for (String key : keys) {
             String param = params.get(key);
